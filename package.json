@@ -1,0 +1,27 @@
+{
+  "name": "nodewebsite",
+  "description": "a simple node website",
+  "version": "0.1.0",
+  "author": {
+    "name": "Nathan Frasier",
+    "email": "nanoshot.nf@gmail.com",
+    "url": "https://github.com/NathanFrasier"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/NathanFrasier/NodeWebsite.git"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "connect-mongo": "^0.7.0",
+    "express": "^4.11.2",
+    "express-session": "^1.10.2",
+    "mongodb": "^1.4.30"
+  }
+}
