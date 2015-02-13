@@ -1,8 +1,7 @@
 var should = require('chai').should()
 
-var requireHelper = require('../require_helper')
+var requireHelper = require('../../require_helper')
 var auth = requireHelper('auth')
-console.log(auth)
 
 describe('auth', function(){
 	describe('authenticate', function(){

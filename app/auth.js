@@ -5,7 +5,8 @@ auth.authenticate = function(req, res, next){
 	if(req.session.loggedin) {
 		next()
 	} else {
-		res.send('You need to be <a href="/login">logged in</a> to access this page.')
+		res.statusCode = 403
+		res.send('<h1>Sorry!</h1><p>You are not authenticated.</p><br/><p>You need to be <a href="/login">logged in</a> to access this page.<p>')
 	}
 }
 
