@@ -28,4 +28,7 @@
     "express-session": "^1.10.2",
     "mongodb": "^1.4.30"
   }
+  "scripts": {
+    "test": "grunt"
+  }
 }
