@@ -30,10 +30,10 @@ auth.validCredentials = function(username, passwd, callback){
 			if(err) {
 				return console.dir(err);
 			}
-			if(result == null){
+			if(result === null){
 				callback(false);
 			} else {
-				if(result.passwd == passwd) {
+				if(result.passwd === passwd) {
 					callback(true);
 				} else {
 					callback(false);
