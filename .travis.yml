@@ -5,5 +5,4 @@ services:
 - mongodb
 before_script:
 - npm install --silent -g grunt-cli
-- mongo NodeWebsite --eval 'db.createCollection("users")'
-- mongo NodeWebsite --eval "db.users.insert({username:'admin',passwd:'admin'}"
+- mongo NodeWebsite --eval 'db.createCollection("users");db.users.insert({username:"admin",passwd:"admin"}'
