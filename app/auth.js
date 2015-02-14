@@ -22,6 +22,7 @@ auth.login = function (req, res){
 };
 auth.register = function (req, res){
 	//build register page
+	//change?
 }
 auth.validCredentials = function(username, passwd, callback){
 	MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db) {
