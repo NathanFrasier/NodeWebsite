@@ -19,6 +19,7 @@ auth.login = function (req, res){
 		}
 	});
 };
+
 auth.delete = function (req, res){
 	auth.validCredentials(req.body.username,req.body.passwd, function (isValid){
 		if(isValid) {
@@ -36,6 +37,9 @@ auth.delete = function (req, res){
 			res.send("Your account deletion has failed.")
 		}
 	})
+}
+auth.register = function (req, res){
+	//build register page
 }
 auth.validCredentials = function(username, passwd, callback){
 	MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db) {
