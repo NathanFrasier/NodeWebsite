@@ -29,6 +29,7 @@
     "mongodb": "^1.4.30"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "posttest" : "CODECLIMATE_REPO_TOKEN=cce6e56ee64eb70f4abfbeeef1c6cdc80f55de64f522850261dc2e4da50c8f26 codeclimate < build/reports/lcov.info"
   }
 }
