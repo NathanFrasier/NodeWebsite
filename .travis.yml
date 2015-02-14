@@ -5,4 +5,5 @@ services:
 - mongodb
 before_script:
 - npm install --silent -g grunt-cli
+- npm install --silent -g codeclimate-test-reporter
 - mongo NodeWebsite --eval 'db.createCollection("users");db.users.insert({username:"admin",passwd:"admin"});'
