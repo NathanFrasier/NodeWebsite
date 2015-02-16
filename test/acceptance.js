@@ -43,6 +43,13 @@ describe('acceptance', function(){
 	describe('/login', function(){
 		it('should allow users to enter a username and password')
 	})
+	describe('/register', function(){
+		it('should have a register page', function(){
+			browser.visit('/register', function(){
+				browser.assert.success()
+			})
+		})
+	})
 	after(function() {
 		this.server.close()
 	})	
