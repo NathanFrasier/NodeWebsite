@@ -11,7 +11,7 @@ auth.authenticate = function(req, res, next){
 };
 
 auth.login = function (req, res){
-	auth.validCredentials(req.body.username,req.body.passwd, function(isValid){
+	auth.validCredentials(req.body.username,req.body.passwd, function (isValid){
 		if(isValid) {
 			req.session.loggedin = true;
 			res.send('You have sucessfully logged in. Welcome!');
@@ -21,8 +21,44 @@ auth.login = function (req, res){
 	});
 };
 auth.register = function (req, res){
-	//build register page
-	//change?
+	auth.registerCredentials(req.body.username,req.body.passwd, function (success, msg){
+		if(success) {
+			res.send('Your registration was successful. Welcome!');
+		} else {
+			res.send('Your registration has failed. ' + msg + '<br/> Click <a href="/register">here</a> to try again');
+		}
+	})
+}
+auth.registerCredentials = function (username, passwd, callback){
+	MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db) {
+		if(err) {
+			return console.dir(err);
+		}
+		var collection = db.collection('users');
+		var document = collection.findOne({'username':username}, function(err, result){
+			if(err) {
+				return console.dir(err);		
+			}
+			if(result) {
+				callback(false, 'That username already exists')
+			} else {
+				if(auth.securePassword(passwd)) {
+					console.log(passwd)
+					collection.insert({"username":username,"passwd":passwd}, function(err){
+						callback(true);
+					});
+				} else {
+					callback(false, 'That password is not secure enough')
+				}
+			}
+		});
+	})
+}
+auth.securePassword = function(passwd){
+	if(passwd === null || passwd === '') {
+		return false;
+	}
+	return true;
 }
 auth.validCredentials = function(username, passwd, callback){
 	MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db) {
