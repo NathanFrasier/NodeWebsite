@@ -45,12 +45,16 @@ app.get('/login', function (req, res){
 
 app.post('/login', auth.login);
 
-
 app.get('/delete',auth.authenticate, function (req, res){
 	res.send('<form action="/delete" method="POST">Username:<br/><input type="text" name="username" required><br/>password:<br/><input type="password" name="passwd" required><br/><label>Are you sure you want to delete your account?<input type="checkbox" required></label><br/><input type="submit" value="Delete Me!"/></form>')
 })
 
 app.post('/delete',auth.delete);
+
+app.get('/register', function (req, res){
+	res.send('<form action="/register" method="POST">Username:<br/><input type="text" name="username"><br/>password:<br/><input type="password" name="passwd"><br/><input type="submit" value="register"/></form>')
+})
+app.post('/register', auth.register);
 
 app.use(function(req, res){
 	res.status(404).send("Whoops! I dont know a page by that name.");
