@@ -37,6 +37,9 @@ describe('acceptance', function(){
 			})
 		})
 	})
+	describe('/delete', function(){
+		it('should have a delete page')
+	})
 	describe('/login', function(){
 		it('should allow users to enter a username and password')
 	})
