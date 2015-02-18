@@ -19,7 +19,6 @@ auth.login = function (req, res){
 		}
 	});
 };
-
 auth.delete = function (req, res){
 	auth.validCredentials(req.body.username,req.body.passwd, function (isValid){
 		if(isValid) {
