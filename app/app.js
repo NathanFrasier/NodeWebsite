@@ -36,17 +36,23 @@ app.get('/index', function (req, res) {
 //routing for the /home page
 app.get('/home',auth.authenticate, function (req, res)
 {
-	res.send('Woot! You made it to the homepage! Wanna head on over to <a href="https://www.reddit.com">Reddit?</a>');
+	res.send('Woot! You made it to the homepage! Wanna head on over to <a href="https://www.reddit.com">Reddit?</a><br/><br/><a href="/delete">Delete Me!</a>');
 });
 
 app.get('/login', function (req, res){
-	res.send('<form action="/login" method="POST">Username:<br/><input type="text" name="username"><br/>password:<br/><input type="password" name="passwd"><br/><input type="submit" value="login"/></form>');
+	res.send('<form action="/login" method="POST">Username:<br/><input type="text" name="username" required><br/>password:<br/><input type="password" name="passwd" required><br/><input type="submit" value="login"/></form>');
 });
 
 app.post('/login', auth.login);
 
+
+app.get('/delete',auth.authenticate, function (req, res){
+	res.send('<form action="/delete" method="POST">Username:<br/><input type="text" name="username" required><br/>password:<br/><input type="password" name="passwd" required><br/><label>Are you sure you want to delete your account?<input type="checkbox" required></label><br/><input type="submit" value="Delete Me!"/></form>')
+})
+
+app.post('/delete',auth.delete);
+
 app.use(function(req, res){
 	res.status(404).send("Whoops! I dont know a page by that name.");
 });
-
 module.exports = app;

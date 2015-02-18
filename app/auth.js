@@ -9,7 +9,6 @@ auth.authenticate = function(req, res, next){
 		res.send('<h1>Sorry!</h1><p>You are not authenticated.</p><br/><p>You need to be <a href="/login">logged in</a> to access this page.<p>');
 	}
 };
-
 auth.login = function (req, res){
 	auth.validCredentials(req.body.username,req.body.passwd, function(isValid){
 		if(isValid) {
@@ -20,6 +19,24 @@ auth.login = function (req, res){
 		}
 	});
 };
+auth.delete = function (req, res){
+	auth.validCredentials(req.body.username,req.body.passwd, function (isValid){
+		if(isValid) {
+			req.session.loggedin = false;
+			MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db){
+				if(err) {
+					return console.dir(err);
+				}
+				var collection = db.collection('users');
+				collection.remove({"username" : req.body.username}, true, function(err){
+					res.send('You have successfully deleted your account. We\'ll miss you!')
+				})
+			})
+		} else {
+			res.send("Your account deletion has failed.")
+		}
+	})
+}
 auth.validCredentials = function(username, passwd, callback){
 	MongoClient.connect('mongodb://localhost/NodeWebsite', function (err, db) {
 		if(err) {
